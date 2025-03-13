@@ -7,3 +7,4 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? 'https://ke08ys.github.io/frontend-rocks/' : '/frontend-rocks',
   plugins: [react(), tailwindcss()],
 })
+  

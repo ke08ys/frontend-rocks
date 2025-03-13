@@ -1,4 +1,5 @@
 import { useState ,  useEffect } from "react";
+import { Link } from "react-router";
 
 export const Detail = () => {
   return <div>Dettaglio</div>
@@ -37,6 +38,8 @@ export const App = () => {
           >
             Cambia
           </button>
+
+<Link to="/frontend-rocks/Dettaglio/:id">Link alla pagina di dettaglio</Link>
 
           <p className="text-center">
             Modifica <code>src/App.tsx</code> e salva per testare l'hot reload

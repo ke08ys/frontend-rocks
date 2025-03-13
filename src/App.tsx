@@ -39,7 +39,7 @@ export const App = () => {
             Cambia
           </button>
 
-<Link to="/frontend-rocks/Dettaglio/:id">Link alla pagina di dettaglio</Link>
+<Link to="/frontend-rocks/dettaglio/1">Link alla pagina di dettaglio</Link>
 
           <p className="text-center">
             Modifica <code>src/App.tsx</code> e salva per testare l'hot reload

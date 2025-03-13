@@ -1,51 +1,93 @@
-import { useState ,  useEffect } from "react";
-import { Link } from "react-router";
+import React from 'react';
 
-export const Detail = () => {
-  return <div>Dettaglio</div>
+interface PokemonCard {
+  id: number;
+  image: string;
+  name: string;
+  types: string[];
+}
+
+const data: PokemonCard[] = [
+  {
+    id: 1,
+    name: "Bulbasaur",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    types: ["grass", "poison"],
+  },
+  {
+    id: 2,
+    name: "Charmander",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+    types: ["fire"],
+  },
+  {
+    id: 3,
+    name: "Squirtle",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    types: ["water"],
+  },
+  {
+    id: 4,
+    name: "Chikorita",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png",
+    types: ["grass"],
+  },
+  {
+    id: 5,
+    name: "Cyndaquil",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png",
+    types: ["fire"],
+  },
+  {
+    id: 6,
+    name: "Totodile",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/158.png",
+    types: ["water"],
+  },
+];
+
+const typeColor: { [key: string]: string } = {
+  fire: "bg-red-400",
+  grass: "bg-green-400",
+  poison: "bg-purple-400",
+  water: "bg-blue-400",
+};
+
+function getTypeColor(type: string): string {
+  return typeColor[type] || "bg-gray-400"; 
 }
 
 export const App = () => {
-  const [count, setCount] = useState(0);
-  const [title, setTitle] = useState("Pokemon spam clicker");
-
-   useEffect(()=>{
-    if (count ===4){ 
-      setTitle ("Ho raggiunto il valore 4")
-   }
-  }, [count])
-
   return (
-    <div className="h-dvh flex flex-col items-center justify-center">
-      <div className="bg-white p-8 rounded-md shadow-lg">
-        <h1 className="text-center font-bold text-3xl text-blue-400 mb-4">
-          {title}
-        </h1>
-
-        <h2 className="text-center font-bold text-xl mb-6">Vite + React</h2>
-
-        <div className="flex flex-col items-center space-y-4">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md cursor-pointer hover:bg-blue-600 transition-colors"
-            onClick={() => setCount((count) => count + 1 )}
-          >
-            Hai premuto il pulsante {count} {count === 1 ? "volta" : "volte"}
-          </button>
-
-          <button
-              className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md cursor-pointer hover:bg-blue-600 transition-colors"
-              onClick={() => setTitle("Charizard")}
-          >
-            Cambia
-          </button>
-
-<Link to="/frontend-rocks/dettaglio/1">Link alla pagina di dettaglio</Link>
-
-          <p className="text-center">
-            Modifica <code>src/App.tsx</code> e salva per testare l'hot reload
-          </p>
-        </div>
+    <div>
+      <div className="flex flex-wrap bg-white">
+        {data.map((item, idx) => {
+          return (
+            <div key={idx} className="p-4 m-2 border rounded">
+              <h3>{item.id} - {item.name}</h3>
+              <img
+                src={item.image}
+                alt={item.name}
+                className="mx-auto w-24 h-24 object-contain"
+              />
+              <div className="flex">
+                {item.types.map((type, index) => {
+                  return (
+                    <div key={index} className={`p-2 m-1 ${getTypeColor(type)}`}>
+                      {type}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
+export const Detail = () => {
+  return <div>Detail Page</div>;
+}
+
